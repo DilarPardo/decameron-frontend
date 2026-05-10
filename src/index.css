@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+/* IMPORTACIÓN DE FUENTE PROFESIONAL */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-blue: #5e72e4;
+  --secondary-blue: #1171ef;
+  --info-cyan: #11cdef;
+  --bg-admin: #f8f9fe;
+  --text-main: #525f7f;
+  --success: #2dce89;
+  --danger: #f5365c;
+}
+
+/* RESET GLOBAL */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body { 
+  font-family: 'Open Sans', sans-serif; 
+  background-color: var(--bg-admin); 
+  color: var(--text-main); 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* UTILIDADES GLOBALES (Para usar en cualquier tabla o formulario) */
+.shadow-soft {
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;
+}
+
+.card-decameron {
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+/* Animación para transiciones de página suaves */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Personalización de Scrollbars para el Sidebar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e9ecef;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #adb5bd;
 }

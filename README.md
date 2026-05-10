@@ -1,70 +1,231 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🏨 Sistema de Gestión Hotelera - Decameron
 
-## Available Scripts
+Proyecto desarrollado como prueba técnica Full Stack utilizando Laravel, React.js y PostgreSQL.
 
-In the project directory, you can run:
+El sistema permite administrar hoteles, habitaciones y acomodaciones aplicando reglas de negocio específicas definidas por la compañía Decameron.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 🚀 Tecnologías Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Backend
+- PHP 8.2+
+- Laravel 12
+- PostgreSQL
+- Laravel Sanctum
+- Arquitectura REST API
+- Principios SOLID
 
-### `npm test`
+## Frontend
+- React.js
+- React Router DOM
+- TailwindCSS
+- Axios
+- Hooks (useState, useEffect)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Herramientas
+- Git & GitHub
+- pgAdmin
+- Postman
+- Visual Studio Code
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 📋 Funcionalidades Principales
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ✅ Autenticación
+- Login seguro para administradores
+- Protección de rutas
+- Manejo de sesiones
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ✅ Dashboard Administrativo
+- Total de hoteles registrados
+- Total habitaciones configuradas
+- Resumen general del sistema
+- Accesos rápidos
 
-### `npm run eject`
+## ✅ Gestión de Hoteles
+- Crear hoteles
+- Editar hoteles
+- Eliminar hoteles
+- Listado con paginación y filtros
+- Validación de NIT único
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ✅ Configuración de Habitaciones
+- Asignación de tipos de habitación
+- Asignación de acomodaciones
+- Control de capacidad máxima
+- Validación de reglas de negocio
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ✅ Catálogos Maestros
+- Departamentos
+- Ciudades
+- Tipos de habitación
+- Acomodaciones
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# 🏗️ Arquitectura de Base de Datos
 
-## Learn More
+Tablas principales:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- departamentos
+- ciudades
+- hoteles
+- tipos_habitacion
+- acomodaciones
+- tipo_habitacion_acomodacion
+- hotel_habitaciones
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+# 📌 Reglas de Negocio Implementadas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Validación de Capacidad
+La suma de habitaciones configuradas no puede superar el número máximo permitido del hotel.
 
-### Analyzing the Bundle Size
+## Combinaciones Únicas
+No se permite repetir:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Tipo Habitación + Acomodación
 
-### Making a Progressive Web App
+para el mismo hotel.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Validación de Acomodaciones
 
-### Advanced Configuration
+| Tipo Habitación | Acomodaciones Permitidas |
+|-----------------|--------------------------|
+| ESTANDAR        | SENCILLA, DOBLE          |
+| JUNIOR          | TRIPLE, CUADRUPLE        |
+| SUITE           | SENCILLA, DOBLE, TRIPLE  |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## NIT Único
+No se permite registrar hoteles con el mismo NIT.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# ⚙️ Instalación del Proyecto
 
-### `npm run build` fails to minify
+## 1️⃣ Clonar Repositorio
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone <URL_DEL_REPOSITORIO>
+```
+
+---
+
+# 2️⃣ Backend Laravel
+
+```bash
+cd backend
+composer install
+cp .env.example .env
+```
+
+Configurar PostgreSQL en el archivo `.env`
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=decameron_db
+DB_USERNAME=postgres
+DB_PASSWORD=123456789
+```
+
+Generar clave:
+
+```bash
+php artisan key:generate
+```
+
+Migraciones:
+
+```bash
+php artisan migrate --seed
+```
+
+Ejecutar servidor:
+
+```bash
+php artisan serve
+```
+
+---
+
+# 3️⃣ Frontend React
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend disponible en:
+
+```bash
+http://localhost:5173
+```
+
+---
+
+# 🔗 Endpoints Principales
+
+## Autenticación
+
+| Método | Endpoint |
+|---------|-----------|
+| POST | /api/login |
+
+## Hoteles
+
+| Método | Endpoint |
+|---------|-----------|
+| GET | /api/hoteles |
+| POST | /api/hoteles |
+| PUT | /api/hoteles/{id} |
+| DELETE | /api/hoteles/{id} |
+
+---
+
+# 📱 Diseño Responsive
+
+Compatible con:
+- Desktop
+- Laptop
+- Tablet
+
+---
+
+# 🧪 Pruebas Unitarias
+
+```bash
+php artisan test
+```
+
+---
+
+# 🔄 Integración Continua
+
+Integración continua mediante GitHub Actions.
+
+---
+
+# 🛠️ Solución de Problemas
+
+Habilitar PostgreSQL en `php.ini`
+
+```ini
+extension=pgsql
+extension=pdo_pgsql
+```
+
+---
+
+# 👨‍💻 Autor
+
+Desarrollado por:
+Dilar Jose Pardo Burgos
+
+Prueba Técnica Full Stack - Decameron
