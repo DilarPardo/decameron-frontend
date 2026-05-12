@@ -1,13 +1,11 @@
 import axios from 'axios';
 
-const URL_DIRECTA = 'https://decameron-backend-production-c56d.up.railway.app/api';
-
 const clienteAxios = axios.create({
-    baseURL: URL_DIRECTA,
+    baseURL: 'https://decameron-backend-production-c56d.up.railway.app/api',
     headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }
+        Accept: 'application/json',
+    },
 });
 
 clienteAxios.interceptors.request.use(
