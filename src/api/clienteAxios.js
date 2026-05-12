@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const clienteAxios = axios.create({
+    
     baseURL: 'https://decameron-backend-production-c56d.up.railway.app/api',
     headers: {
         'Content-Type': 'application/json',
