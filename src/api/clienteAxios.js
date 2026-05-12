@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const API_URL = 'https://decameron-backend-production-c56d.up.railway.app/api';
+
 const clienteAxios = axios.create({
-    baseURL: (process.env.REACT_APP_API_URL || 'http://localhost:8000/api').replace(/\/$/, ""),
+    baseURL: API_URL, 
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
