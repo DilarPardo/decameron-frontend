@@ -43,14 +43,18 @@ const Asignaciones = () => {
 
     const manejarCambioTipo = async (typeId, initialAccommodationId = '') => {
         setNuevaAsignacion(prev => ({ ...prev, room_type_id: typeId, accommodation_id: initialAccommodationId }));
+        
         if (!typeId) {
             setAcomodacionesFiltradas([]);
             return;
         }
+
         try {
             const res = await clienteAxios.get(`/room-types/${typeId}/accommodations`);
-            setAcomodacionesFiltradas(res.data);
+            const dataFinal = res.data.data || res.data;
+            setAcomodacionesFiltradas(dataFinal);
         } catch (error) {
+            console.error("Error cargando acomodaciones:", error);
             setAcomodacionesFiltradas([]);
         }
     };
