@@ -43,18 +43,14 @@ const Asignaciones = () => {
 
     const manejarCambioTipo = async (typeId, initialAccommodationId = '') => {
         setNuevaAsignacion(prev => ({ ...prev, room_type_id: typeId, accommodation_id: initialAccommodationId }));
-        
         if (!typeId) {
             setAcomodacionesFiltradas([]);
             return;
         }
-
         try {
             const res = await clienteAxios.get(`/room-types/${typeId}/accommodations`);
-            const dataFinal = res.data.data || res.data;
-            setAcomodacionesFiltradas(dataFinal);
+            setAcomodacionesFiltradas(res.data);
         } catch (error) {
-            console.error("Error cargando acomodaciones:", error);
             setAcomodacionesFiltradas([]);
         }
     };
@@ -218,23 +214,10 @@ const Asignaciones = () => {
                                 </div>
                                 <div className="col-6">
                                     <label className="small font-weight-bold text-uppercase">Acomodación</label>
-                                    <select 
-                                            className="form-control"
-                                            required
-                                            disabled={acomodacionesFiltradas.length === 0}
-                                            value={nuevaAsignacion.accommodation_id}
-                                            onChange={e => setNuevaAsignacion({...nuevaAsignacion, accommodation_id: e.target.value})}                                            
-                                        >
-                                            <option value="">
-                                                {acomodacionesFiltradas.length === 0 ? 'Cargando...' : 'Elegir...'}
-                                            </option>
-                                            {acomodacionesFiltradas.map(item => (
-                                                <option key={item.id} value={item.id}>
-                                                    {/* IMPORTANTE: Verifica si tu modelo en BD usa 'name' o 'nombre' */}
-                                                    {item.name || item.nombre} 
-                                                </option>
-                                            ))}
-                                        </select>
+                                    <select className="form-control" required disabled={acomodacionesFiltradas.length === 0} value={nuevaAsignacion.accommodation_id} onChange={e => setNuevaAsignacion({...nuevaAsignacion, accommodation_id: e.target.value})}>
+                                        <option value="">Elegir...</option>
+                                        {acomodacionesFiltradas.map(reg => <option key={reg.id} value={reg.accommodation_id}>{reg.accommodation?.name}</option>)}
+                                    </select>
                                 </div>
                             </div>
                             
